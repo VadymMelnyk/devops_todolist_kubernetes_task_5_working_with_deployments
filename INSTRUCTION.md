@@ -4,7 +4,6 @@
 kubectl apply -f .infrastructure/namespace.yml 
 kubectl apply -f .infrastructure/deployment.yml 
 kubectl apply -f .infrastructure/hpa.yml 
-kubectl apply -f .infrastructure/nodeport.yml 
 ```
 
 ### Configuration & Strategy Justifications
@@ -77,15 +76,9 @@ Why: A threshold of 70% leaves a 30% safety buffer for pods to handle ongoing tr
 
 ### How to access the app after deployment
 
-Access the application health endpoint directly using the allocated NodePort (30080):
-
-```bash
-curl http://localhost:30080
-```
-
 Via Port Forwarding:
 ```bash
-kubectl port-forward svc/todoapp 8080:80 -n todoapp
+kubectl port-forward svc/todoapp 8080:80 -n mateapp
 ```
 
 Then test locally:
